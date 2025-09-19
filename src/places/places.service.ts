@@ -12,20 +12,30 @@ export class PlacesService {
     });
   }
 
-  async getPlacesNearby(lat: number, lng: number, radiusMeters: number) {
+  async getPlacesNearby(
+    lat: number,
+    lng: number,
+    radiusMeters: number,
+    limit = 10,
+    offset = 0,
+  ): Promise<PlaceNearbyDto[]> {
     return this.prisma.$queryRawUnsafe<PlaceNearbyDto[]>(`
-      SELECT id, name, type, address,
+    SELECT id, name, type, address,
+           ROUND(
              ST_Distance(
                ST_MakePoint(${lng}, ${lat})::geography,
                "location"
-             ) AS distance
-      FROM "Place"
-      WHERE ST_DWithin(
-        "location",
-        ST_MakePoint(${lng}, ${lat})::geography,
-        ${radiusMeters}
-      )
-      ORDER BY distance ASC;
-    `);
+             ), 1
+           ) AS distance
+    FROM "Place"
+    WHERE ST_DWithin(
+      "location",
+      ST_MakePoint(${lng}, ${lat})::geography,
+      ${radiusMeters}
+    )
+    ORDER BY distance ASC
+    LIMIT ${limit}
+    OFFSET ${offset};
+  `);
   }
 }

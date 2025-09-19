@@ -18,25 +18,25 @@ export class PlacesController {
   async getAllPlaces() {
     return this.placesService.getAllPlaces();
   }
-
   @Get('nearby')
-  @ApiOperation({
-    summary: '반경 내 장소 조회',
-    description: '내 위치(lat/lng) 기준 반경(radius m) 내의 장소를 조회합니다.',
-  })
   @ApiQuery({ name: 'lat', type: Number, example: 36.3731 })
   @ApiQuery({ name: 'lng', type: Number, example: 127.362 })
-  @ApiQuery({ name: 'radius', type: Number, example: 100, description: '반경 (미터)' })
-  @ApiResponse({
-    status: 200,
-    description: '반경 내 장소 리스트',
-    type: [PlaceNearbyDto],
-  })
+  @ApiQuery({ name: 'radius', type: Number })
+  @ApiQuery({ name: 'limit', type: Number, required: false, example: 10 })
+  @ApiQuery({ name: 'offset', type: Number, required: false, example: 0 })
   async getPlacesNearby(
     @Query('lat') lat: string,
     @Query('lng') lng: string,
     @Query('radius') radius: string,
+    @Query('limit') limit = '10',
+    @Query('offset') offset = '0',
   ) {
-    return this.placesService.getPlacesNearby(Number(lat), Number(lng), Number(radius));
+    return this.placesService.getPlacesNearby(
+      Number(lat),
+      Number(lng),
+      Number(radius),
+      Number(limit),
+      Number(offset),
+    );
   }
 }

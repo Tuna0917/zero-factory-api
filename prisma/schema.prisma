@@ -1,0 +1,64 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis]
+}
+
+enum PlaceType {
+  STORE
+  FACILITY
+}
+
+enum TransactionType {
+  EARN
+  REDEEM
+}
+
+model Place {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type      PlaceType
+  address   String?
+  location  Unsupported("geography(Point,4326)") // ⚡️ WGS84 위경도 기반, 거리 계산 미터 단위
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store Store?
+}
+
+
+model Store {
+  id           Int      @id @default(autoincrement())
+  placeId      Int      @unique
+  place        Place    @relation(fields: [placeId], references: [id])
+  partnership  Boolean  @default(false)
+  openingHours String?
+  phone        String?
+
+  transactions PointTransaction[]
+}
+
+model Member {
+  id           String    @id @default(uuid()) // UUID로 보안 강화
+  deviceId     String    @unique
+  pointBalance Int       @default(0)
+  createdAt    DateTime  @default(now())
+
+  transactions PointTransaction[]
+}
+
+model PointTransaction {
+  id        Int              @id @default(autoincrement())
+  member    Member           @relation(fields: [memberId], references: [id])
+  memberId  String
+  store     Store            @relation(fields: [storeId], references: [id])
+  storeId   Int
+  amount    Int
+  type      TransactionType
+  createdAt DateTime         @default(now())
+}

@@ -24,9 +24,9 @@ export class PlacesController {
     summary: '반경 내 장소 조회',
     description: '내 위치(lat/lng) 기준 반경(radius m) 내의 장소를 조회합니다.',
   })
-  @ApiQuery({ name: 'lat', type: Number, example: 37.5665 })
-  @ApiQuery({ name: 'lng', type: Number, example: 126.978 })
-  @ApiQuery({ name: 'radius', type: Number, example: 1000, description: '반경 (미터)' })
+  @ApiQuery({ name: 'lat', type: Number, example: 36.3731 })
+  @ApiQuery({ name: 'lng', type: Number, example: 127.362 })
+  @ApiQuery({ name: 'radius', type: Number, example: 100, description: '반경 (미터)' })
   @ApiResponse({
     status: 200,
     description: '반경 내 장소 리스트',

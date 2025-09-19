@@ -18,7 +18,7 @@
     "prisma:migrate:init": "prisma migrate dev --name init",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
-    "db:setup": "pnpm db:up && pnpm prisma:migrate:init && pnpm prisma:generate"
+    "db:setup": "pnpm db:up && pnpm prisma:migrate:init && pnpm prisma:generate && node prisma/seed.mjs"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

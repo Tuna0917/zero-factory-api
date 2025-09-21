@@ -1,4 +1,17 @@
-# START
+# TUTORIAL
+
+## How to start
+
+Node 버전 22.19.0
+
+pnpm 사용
+
+```bash
+pnpm db:setup
+pnpm dev
+```
+
+# DB Commands
 
 ## 전체 초기 세팅 (DB 실행 + 초기 마이그레이션 + Client 생성)
 

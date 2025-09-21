@@ -22,6 +22,7 @@ export class AppController {
     try {
       // 간단한 쿼리 실행으로 DB 연결 체크
       await this.prisma.$queryRawUnsafe(`SELECT 1`);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       dbStatus = 'error';
     }

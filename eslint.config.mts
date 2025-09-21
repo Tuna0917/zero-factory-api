@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import prettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
@@ -13,12 +13,5 @@ export default defineConfig([
     },
   },
   ...tseslint.configs.recommended,
-  {
-    // prettier를 ESLint 안으로 통합
-    plugins: { prettier: prettier as Record<string, Plugin> },
-    extends: ['prettier'],
-    rules: {
-      'prettier/prettier': 'error', // Prettier 규칙 위반시 ESLint 에러
-    },
-  },
+  eslintConfigPrettier,
 ]);

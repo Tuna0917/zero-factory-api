@@ -1,6 +1,5 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode", // 저장 시 Prettier만 실행
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "eslint.format.enable": false // ESLint는 포맷 안 하도록
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }

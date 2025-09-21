@@ -4,8 +4,8 @@ import { PlaceType } from '@prisma/client/edge';
 
 const prisma = new PrismaClient();
 
-const KAIST_LAT = 36.3731;
-const KAIST_LNG = 127.362;
+// const KAIST_LAT = 36.3731;
+// const KAIST_LNG = 127.362;
 
 // 10개 샘플 좌표 (무작위로 생성된, KAIST 기준 반경 <= ~100m)
 const pois = [

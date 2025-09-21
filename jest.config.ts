@@ -17,7 +17,7 @@ const config: JestConfigWithTsJest = {
     ],
   },
   coverageDirectory: '../coverage',
-  collectCoverageFrom: ['**/*.(t|j)s', '!src/main.ts'],
+  collectCoverageFrom: ['**/*.(t|j)s', '!main.ts'],
 };
 
 export default config;

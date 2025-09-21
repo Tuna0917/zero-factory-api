@@ -13,10 +13,15 @@ describe('PlacesController', () => {
         {
           provide: PlacesService,
           useValue: {
+            getAllPlaces: jest
+              .fn()
+              .mockResolvedValue([
+                { id: 1, name: '테스트 장소', type: 'STORE', address: '대전', store: null },
+              ]),
             getPlacesNearby: jest
               .fn()
               .mockResolvedValue([
-                { id: 1, name: '테스트 POI', type: 'STORE', address: '대전', distance: 50.1 },
+                { id: 1, name: '근처 장소', type: 'FACILITY', address: '대전', distance: 42.1 },
               ]),
           },
         },
@@ -31,10 +36,21 @@ describe('PlacesController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('근처 장소를 조회한다', async () => {
-    const result = await controller.getPlacesNearby('36.3731', '127.3620', '100');
-    expect(result).toHaveLength(1);
-    expect(result[0].name).toBe('테스트 POI');
-    expect(service.getPlacesNearby).toHaveBeenCalled();
+  describe('getAllPlaces', () => {
+    it('모든 장소를 반환한다', async () => {
+      const result = await controller.getAllPlaces();
+      expect(service.getAllPlaces).toHaveBeenCalled();
+      expect(result).toHaveLength(1);
+      expect(result[0].name).toBe('테스트 장소');
+    });
+  });
+
+  describe('getPlacesNearby', () => {
+    it('근처 장소를 반환한다', async () => {
+      const result = await controller.getPlacesNearby('36.3731', '127.3620', '100');
+      expect(service.getPlacesNearby).toHaveBeenCalledWith(36.3731, 127.362, 100, 10, 0);
+      expect(result).toHaveLength(1);
+      expect(result[0]).toHaveProperty('distance', 42.1);
+    });
   });
 });

@@ -19,7 +19,8 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "db:setup": "pnpm db:up && pnpm prisma:migrate:init && pnpm prisma:generate && node prisma/seed.mjs",
-    "test": "jest"
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

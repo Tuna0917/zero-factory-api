@@ -17,7 +17,14 @@ describe('MembersService', () => {
     expect(service).toBeDefined();
   });
 
-  it('새 멤버를 생성하거나 기존 멤버를 찾는다', async () => {
+  it('새 멤버를 생성한다', async () => {
+    const deviceId = 'no-device-id';
+    const member = await service.findOrCreate(deviceId);
+    expect(member.deviceId).toBe(deviceId);
+    expect(member.pointBalance).toBe(0);
+  });
+
+  it('기존 멤버를 찾는다', async () => {
     const deviceId = 'test-device-id';
     const member = await service.findOrCreate(deviceId);
     expect(member.deviceId).toBe(deviceId);

@@ -1,6 +1,6 @@
-import type { Config } from 'jest';
+import { JestConfigWithTsJest } from 'ts-jest';
 
-const config: Config = {
+const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleFileExtensions: ['js', 'json', 'ts'],
@@ -12,11 +12,12 @@ const config: Config = {
       {
         tsconfig: 'tsconfig.json',
         transpileOnly: true,
+        transpilation: true,
       },
     ],
   },
   coverageDirectory: '../coverage',
-  collectCoverageFrom: ['**/*.(t|j)s'],
+  collectCoverageFrom: ['**/*.(t|j)s', '!src/main.ts'],
 };
 
 export default config;

@@ -18,12 +18,14 @@ export class PlacesController {
   async getAllPlaces() {
     return this.placesService.getAllPlaces();
   }
+
   @Get('nearby')
   @ApiQuery({ name: 'lat', type: Number, example: 36.3731 })
   @ApiQuery({ name: 'lng', type: Number, example: 127.362 })
   @ApiQuery({ name: 'radius', type: Number })
   @ApiQuery({ name: 'limit', type: Number, required: false, example: 10 })
   @ApiQuery({ name: 'offset', type: Number, required: false, example: 0 })
+  @ApiResponse({ status: 200, type: [PlaceNearbyDto] })
   async getPlacesNearby(
     @Query('lat') lat: string,
     @Query('lng') lng: string,

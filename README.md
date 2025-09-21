@@ -2,9 +2,16 @@
 
 ## How to start
 
-Node 버전 22.19.0
+Node 버전 22.19.0  
+pnpm 사용 (미설치시 아래 명령어 입력)
 
-pnpm 사용
+```bash
+npm i -g pnpm
+```
+
+docker desktop 추천  
+[window설치](https://docs.docker.com/desktop/setup/install/windows-install/)  
+[mac설치](https://docs.docker.com/desktop/setup/install/mac-install/)
 
 ```bash
 pnpm db:setup

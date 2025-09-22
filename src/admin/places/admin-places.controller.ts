@@ -1,4 +1,3 @@
-// src/admin/places/admin-places.controller.ts
 import {
   Controller,
   Get,

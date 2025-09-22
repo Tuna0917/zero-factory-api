@@ -1,4 +1,3 @@
-// src/admin/users/admin-users.service.ts
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { AdminUserDto } from './dto/admin-user.dto';

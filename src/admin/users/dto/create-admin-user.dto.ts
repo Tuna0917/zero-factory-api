@@ -1,4 +1,3 @@
-// src/admin/users/dto/create-admin-user.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAdminUserDto {

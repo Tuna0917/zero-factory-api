@@ -1,4 +1,3 @@
-// src/admin/places/dto/place.dto.ts
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { PlaceType } from '@prisma/client';
 

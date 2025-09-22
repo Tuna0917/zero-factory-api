@@ -10,8 +10,7 @@ export async function createApp(): Promise<INestApplication> {
     .setTitle('ZeroWaste API')
     .setDescription('제로웨이스트 앱용 백엔드 API 문서')
     .setVersion('1.0')
-    .addTag('members')
-    .addTag('places')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

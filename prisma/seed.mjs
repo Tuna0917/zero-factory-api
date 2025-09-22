@@ -1,6 +1,7 @@
 // prisma/seed.mjs
 import { PrismaClient } from '@prisma/client';
 import { PlaceType } from '@prisma/client/edge';
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -23,6 +24,16 @@ const pois = [
 
 async function main() {
   console.log('Seeding: creating temp member and 10 POIs...');
+
+  // 0) admin 생성
+  const password = await bcrypt.hash('admin123', 10);
+  await prisma.adminUser.create({
+    data: {
+      email: 'admin@example.com',
+      password,
+      role: 'admin',
+    },
+  });
 
   // 1) 임시 Member (deviceId는 임의값)
   const member = await prisma.member.create({

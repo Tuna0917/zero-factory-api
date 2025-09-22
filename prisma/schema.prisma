@@ -26,7 +26,7 @@ model Place {
   address   String?
   location  Unsupported("geography(Point,4326)") // ⚡️ WGS84 위경도 기반, 거리 계산 미터 단위
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   store Store?
 }
@@ -48,8 +48,18 @@ model Member {
   deviceId     String    @unique
   pointBalance Int       @default(0)
   createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
 
   transactions PointTransaction[]
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String   // bcrypt hash 저장
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
 }
 
 model PointTransaction {
@@ -61,4 +71,5 @@ model PointTransaction {
   amount    Int
   type      TransactionType
   createdAt DateTime         @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
 }

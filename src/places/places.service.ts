@@ -64,7 +64,6 @@ export class PlacesService {
   LIMIT ${limit}
   OFFSET ${offset};
 `;
-    console.log(query);
     const places =
       await this.prisma.$queryRawUnsafe<Array<Omit<PlaceNearbyDto, 'todayHours'>>>(query);
 

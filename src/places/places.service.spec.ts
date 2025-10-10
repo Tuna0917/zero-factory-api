@@ -23,6 +23,8 @@ describe('PlacesService', () => {
                 },
               ]),
             },
+            storeOpeningHour: { findFirst: jest.fn() },
+            storeOpeningHourException: { findFirst: jest.fn() },
             $queryRawUnsafe: jest
               .fn()
               .mockResolvedValue([

@@ -20,7 +20,7 @@ export class PlacesController {
   @ApiOperation({ summary: '좌표 기준 반경 내 장소 검색' })
   @ApiQuery({ name: 'lat', type: Number, example: 36.3731 })
   @ApiQuery({ name: 'lng', type: Number, example: 127.362 })
-  @ApiQuery({ name: 'radius', type: Number, example: 10, description: '미터' })
+  @ApiQuery({ name: 'radius', type: Number, example: 100, description: '미터' })
   @ApiQuery({ name: 'limit', type: Number, required: false, example: 10 })
   @ApiQuery({ name: 'offset', type: Number, required: false, example: 0 })
   @ApiQuery({

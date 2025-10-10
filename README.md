@@ -13,7 +13,7 @@ docker desktop 추천
 [window설치](https://docs.docker.com/desktop/setup/install/windows-install/)  
 [mac설치](https://docs.docker.com/desktop/setup/install/mac-install/)
 
-.env.example 파일을 복사해서 .env파일로 변경
+**중요: .env.example 파일을 복사해서 .env파일로 변경**
 
 ```bash
 pnpm i

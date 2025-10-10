@@ -48,7 +48,7 @@ describe('PlacesController', () => {
   describe('getPlacesNearby', () => {
     it('근처 장소를 반환한다', async () => {
       const result = await controller.getPlacesNearby('36.3731', '127.3620', '100');
-      expect(service.getPlacesNearby).toHaveBeenCalledWith(36.3731, 127.362, 100, 10, 0);
+      expect(service.getPlacesNearby).toHaveBeenCalledWith(36.3731, 127.362, 100, 10, 0, undefined);
       expect(result).toHaveLength(1);
       expect(result[0]).toHaveProperty('distance', 42.1);
     });

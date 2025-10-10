@@ -14,17 +14,14 @@ describe('PlacesService', () => {
           provide: PrismaService,
           useValue: {
             place: {
-              findMany: jest
-                .fn()
-                .mockResolvedValue([
-                  {
-                    id: 1,
-                    name: '테스트 장소',
-                    type: 'STORE',
-                    address: '대전',
-                    store: { partnership: true },
-                  },
-                ]),
+              findMany: jest.fn().mockResolvedValue([
+                {
+                  id: 1,
+                  name: '테스트 장소',
+                  type: 'STORE',
+                  address: '대전',
+                },
+              ]),
             },
             $queryRawUnsafe: jest
               .fn()
@@ -47,7 +44,9 @@ describe('PlacesService', () => {
   describe('getAllPlaces', () => {
     it('모든 장소를 store 포함해서 가져온다', async () => {
       const result = await service.getAllPlaces();
-      expect(prisma.place.findMany).toHaveBeenCalledWith({ include: { store: true } });
+      expect(prisma.place.findMany).toHaveBeenCalledWith({
+        include: { exceptions: true, openingHours: true },
+      });
       expect(result[0].name).toBe('테스트 장소');
     });
   });

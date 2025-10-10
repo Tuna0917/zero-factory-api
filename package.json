@@ -13,6 +13,7 @@
     "db:up": "docker compose up -d db",
     "db:down": "docker compose down",
     "db:reset": "docker compose down -v && docker compose up -d db && pnpm prisma:reset",
+    "db:seed": "node prisma/seed.mjs",
     "prisma:migrate": "prisma migrate dev",
     "prisma:reset": "prisma migrate reset",
     "prisma:migrate:init": "prisma migrate dev --name init",
@@ -20,7 +21,8 @@
     "prisma:studio": "prisma studio",
     "db:setup": "pnpm db:up && pnpm prisma:migrate:init && pnpm prisma:generate && node prisma/seed.mjs",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "reset": "pnpm prisma:reset && rm -rf prisma/migrations && pnpm prisma:migrate:init && pnpm prisma:generate && pnpm db:seed"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
